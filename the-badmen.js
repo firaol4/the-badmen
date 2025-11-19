@@ -5,6 +5,15 @@
 import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
+import "./badmen-navbar.js";
+import "./badmen-layout.js";
+import "./badmen-signup.js";
+import "./badmen-teamname.js";
+import "./badmen-calendar.js";
+import "./badmen-joinus.js";
+import "./badmen-infoboxes.js";
+import "./badmen-datecard.js";
+import "./badmen-stats.js";
 
 /**
  * `the-badmen`
@@ -64,13 +73,44 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
   }
 
   // Lit render the HTML
-  render() {
-    return html`
-<div class="wrapper">
-  <h3><span>${this.t.title}:</span> ${this.title}</h3>
-  <slot></slot>
-</div>`;
-  }
+render() {
+  return html`
+    <div class="wrapper">
+
+      <h2>Navigation Bar</h2>
+      <badmen-navbar></badmen-navbar>
+
+      <h2>Signup Section</h2>
+      <badmen-signup></badmen-signup>
+
+      <h2>Layout</h2>
+      <badmen-layout></badmen-layout>
+
+      <h2>Team Name</h2>
+      <badmen-teamname></badmen-teamname>
+
+      <h2>Calendar</h2>
+      <badmen-calendar></badmen-calendar>
+
+      <h2>Signup</h2>
+      <badmen-signup></badmen-signup>
+
+      <h2>Stats</h2>
+      <badmen-stats></badmen-stats>
+
+       <h2>Join Us</h2>
+      <badmen-joinus></badmen-joinus>
+
+       <h2>Info boxes</h2>
+      <badmen-infoboxes></badmen-infoboxes>
+
+       <h2>datecard</h2>
+      <badmen-datecard></badmen-datecard>
+
+    </div>
+  `;
+}
+
 
   /**
    * haxProperties integration via file reference
