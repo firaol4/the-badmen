@@ -30,7 +30,11 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
   constructor() {
     super();
     this.title = "";
-    
+    this.t = this.t || {};
+    this.t = {
+      ...this.t,
+      title: "Title",
+    };
     this.registerLocalization({
       context: this,
       localesPath:
@@ -65,24 +69,60 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
       h3 span {
         font-size: var(--the-badmen-label-font-size, var(--ddd-font-size-s));
       }
+      .stats-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+
+        width: 100%;
+        padding: 20px 0;
+      }
     `];
   }
 
   // Lit render the HTML
-  render() {
-    return html`
-<div class="wrapper">
-  <badmen-joinus></badmen-joinus>
-  <badmen-datecard
-  date="Saturday, March 15"
-  location="IM Building Court 3"
-  time="6:00 PM – 8:00 PM"
-  ageGroup="18U"
-  
-></badmen-datecard>
+render() {
+  return html`
+    <div class="wrapper">
 
-</div>`;
-  }
+      <h2>Navigation Bar</h2>
+      <badmen-navbar></badmen-navbar>
+
+      <h2>Signup Section</h2>
+      <badmen-signup></badmen-signup>
+
+      <h2>Layout</h2>
+      <badmen-layout></badmen-layout>
+
+      <h2>Team Name</h2>
+      <badmen-teamname></badmen-teamname>
+
+      <h2>Calendar</h2>
+      <badmen-calendar></badmen-calendar>
+
+      <h2>Signup</h2>
+      <badmen-signup></badmen-signup>
+
+      <h2>Stats</h2>
+      <div class="stats-row">
+      <badmen-stats number="10" label="Championships"></badmen-stats>
+      <badmen-stats number="450" label="Active Players"></badmen-stats>
+      <badmen-stats number="34" label="Coaches"></badmen-stats>
+      </div>
+       <h2>Join Us</h2>
+      <badmen-joinus></badmen-joinus>
+
+       <h2>Info boxes</h2>
+      <badmen-infoboxes></badmen-infoboxes>
+
+       <h2>datecard</h2>
+      <badmen-datecard></badmen-datecard>
+
+    </div>
+  `;
+}
+
 
   /**
    * haxProperties integration via file reference

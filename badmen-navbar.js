@@ -8,11 +8,15 @@ export class badmenNavbar extends LitElement {
   static get properties() {
     return {
       
+      
     };
   }
 
+  
+
   constructor() {
     super();
+   
     
   }
 
@@ -25,8 +29,11 @@ export class badmenNavbar extends LitElement {
   }
 
   render() {
+
     return html`
-     <h1>hello I am the navbar</h1> 
+    
+    
+     
     `;
   }
 }
