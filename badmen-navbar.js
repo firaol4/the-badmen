@@ -32,8 +32,9 @@ export class badmenNavbar extends LitElement {
       }
 
       .logo {
-        font-weight: bold;
-        font-size: 36px;
+        display: flex;
+        width: 200px;
+        height: 125px;
       }
 
       ul {
@@ -49,7 +50,8 @@ export class badmenNavbar extends LitElement {
   render() {
     return html`
       <nav>
-        <div class="logo">THE BADMEN</div>
+        <img class="logo"
+        src="https://i.pinimg.com/736x/61/c8/a9/61c8a90ed6cc25dbb0bd34fd74aa9463.jpg">
         <ul>
           <li>About Us</li>
           <li>Schedule</li>
