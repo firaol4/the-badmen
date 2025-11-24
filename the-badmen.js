@@ -61,6 +61,7 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
     css`
       :host {
       }
+      
       /*KEEPS NAV BAR STICKY*/
       badmen-navbar {
         position: sticky;
@@ -113,11 +114,11 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
       .stats-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;              /* spacing between stat boxes */
+  gap: 72px;              /* spacing between stat boxes */
   justify-content: center;
   align-items: flex-start;
   padding: 8px;
-  padding-top: 144px;
+  padding-top: 72px;
   box-sizing: border-box;
 }
 
@@ -148,8 +149,6 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
 render() {
   return html`
-    <div class="wrapper">
-
       <badmen-navbar></badmen-navbar>
       <div class="front-image">
       <img
@@ -251,9 +250,9 @@ render() {
     </div>
          
     <div class="stats-row">
-      <badmen-stats number="10" label="Championships" color=var(--ddd-theme-default-opportunityGreen)></badmen-stats>
-<badmen-stats number="450" label="Active Players" color="var(--ddd-theme-default-coalyGray)"></badmen-stats>
-<badmen-stats number="34" label="Coaches" color="var(--ddd-theme-default-keystoneYellow)"></badmen-stats>
+      <badmen-stats number="10" label="Championships" color=var(--ddd-theme-default-shrineMaxLight)></badmen-stats>
+<badmen-stats number="450" label="Active Players" color="var(--ddd-theme-default-shrineMaxLight)"></badmen-stats>
+<badmen-stats number="34" label="Coaches" color="var(--ddd-theme-default-shrineMaxLight)"></badmen-stats>
 
       </div>
       

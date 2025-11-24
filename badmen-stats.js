@@ -38,10 +38,7 @@ export class badmenStats extends LitElement {
         max-width: 100%;
         padding: 16px;
         border-radius: var(--ddd-radius-sm);
-        border: 1px solid black;
-
-        background: var(--stat-color, var(--ddd-theme-default-roarLight));
-
+        border: .1px solid white;
         box-sizing: border-box;
         text-align: center;
       }
@@ -51,13 +48,13 @@ export class badmenStats extends LitElement {
   font-weight: var(--ddd-font-weight-black);
   font-size: clamp(36px, 18vw, 250px);
   letter-spacing: var(--ddd-spacing-3);
-  color: var(--number-color, var(--ddd-theme-default-opportunityGreen)); 
+  color: var(--number-color); 
   margin-bottom: 8px;
   line-height: 1;
 }
 
 .label {
-  color: var(--ddd-theme-default-coalyGray); /* label stays default color */
+  color: var(--ddd-theme-default-shrineMaxLight); /* label stays default color */
   font-family: var(--ddd-font-secondary);
   font-weight: var(--ddd-font-weight-regular);
   font-size: clamp(16px, 4vw, 24px);
