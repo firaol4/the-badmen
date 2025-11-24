@@ -20,33 +20,38 @@ export class badmenJoinus extends LitElement {
 
   static get styles() {
     return css`
-    .join-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 40px 0;
-      }
+.join-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 16px; /* ensures some spacing on mobile */
+}
 
-      .join-button {
-        background: white;
-        color: black; 
-        font-size: 1rem;
-        font-weight: 800;
-        padding: 16px 16px;
-        border-radius: 20px;
-        border: none;
-        cursor: pointer;
-        transition: all 0.2s ease-in-out;
-        text-transform: uppercase;
-        letter-spacing: 4px;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-      }
+.join-button {
+  white-space: nowrap;
+  background: var(--ddd-theme-default-roarLight);
+  color: var(--ddd-theme-default-coalyGray);
+  font-family: var(--ddd-font-navigation);
+  font-weight: var(--ddd-font-weight-medium);
+  letter-spacing: var(--ddd-spacing-1);
+  font-size: clamp(18px, 5vw, 36px); /* scales between 18px and 32px */
+  padding: clamp(8px, 2vw, 16px);   /* scales padding on small screens */
+  border-radius: var(--ddd-radius-rounded);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-transform: uppercase;
+  width: 100%;
+  max-width: 700px; /* keeps it reasonable on large screens */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.9);
+}
 
-      .join-button:hover {
-        transform: scale(1.05);
-        background: #e9e9e9;
-      }
-     
+.join-button:hover {
+  transform: scale(1.01);
+  background: var(--ddd-theme-default-keystoneYellow);
+}    
     `;
   }
 

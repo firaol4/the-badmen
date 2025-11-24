@@ -31,7 +31,7 @@ export class badmenDatecard extends LitElement {
       :host {
         display: inline-block;
         max-width: 350px;
-        background: var(--ddd-theme-default-slateMaxLight);
+        background: var(--ddd-theme-default-roarLight);
         border-radius: 4px;
         padding: 8px;
       }

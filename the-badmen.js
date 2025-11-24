@@ -82,7 +82,7 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
       }
       .badmen-image {
               width: 100%;
-              opacity: 75%;
+              opacity: 80%;
             }
       
       /*for the data cards scroll*/
