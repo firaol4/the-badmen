@@ -34,9 +34,9 @@ export class badmenJoinus extends LitElement {
   background: var(--ddd-theme-default-roarLight);
   color: var(--ddd-theme-default-coalyGray);
   font-family: var(--ddd-font-navigation);
-  font-weight: var(--ddd-font-weight-medium);
+  font-weight: var(--ddd-font-weight-regular);
   letter-spacing: var(--ddd-spacing-1);
-  font-size: clamp(18px, 5vw, 36px); /* scales between 18px and 32px */
+  font-size: clamp(14px, 3vw, 24px); /* scales between 14px and 24px */
   padding: clamp(8px, 2vw, 16px);   /* scales padding on small screens */
   border-radius: var(--ddd-radius-rounded);
   border: none;

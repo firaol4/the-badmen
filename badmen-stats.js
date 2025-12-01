@@ -36,9 +36,9 @@ export class badmenStats extends LitElement {
         justify-content: center;
         width: fit-content;
         max-width: 100%;
-        padding: 16px;
-        border-radius: var(--ddd-radius-sm);
-        border: .1px solid white;
+        padding: 72px;
+        padding-top: 32px;
+        padding-bottom: 32px;
         box-sizing: border-box;
         text-align: center;
       }
@@ -46,7 +46,7 @@ export class badmenStats extends LitElement {
     .number {
   font-family: var(--ddd-font-secondary);
   font-weight: var(--ddd-font-weight-black);
-  font-size: clamp(36px, 18vw, 250px);
+  font-size: clamp(36px, 18vw, 164px);
   letter-spacing: var(--ddd-spacing-3);
   color: var(--number-color); 
   margin-bottom: 8px;
@@ -55,22 +55,32 @@ export class badmenStats extends LitElement {
 
 .label {
   color: var(--ddd-theme-default-shrineMaxLight); /* label stays default color */
-  font-family: var(--ddd-font-secondary);
-  font-weight: var(--ddd-font-weight-regular);
-  font-size: clamp(16px, 4vw, 24px);
+  font-family: var(--ddd-font-weight-medium);
+  font-weight: var(--ddd-font-weight-black);
+  font-size: clamp(24px, 4vw, 36px);
   line-height: 2;
 }
-
+.banner {
+  background: green;               /* or var(--your-theme-color) */
+  height: 100%;                    /* stretch full height of host */
+  width: 100%;                     /* fill container */
+  padding: 72px;                   /* move padding FROM :host */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
     `;
   }
 
   render() {
-    return html`
+  return html`
       <div class="number">${this.number}</div>
       <div class="label">${this.label}</div>
-    `;
-  }
+    </div>
+  `;
+}
 }
 
 customElements.define(badmenStats.tag, badmenStats);

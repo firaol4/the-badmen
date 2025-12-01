@@ -53,38 +53,31 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
   }
 
 
-
-
   // Lit scoped styles
   static get styles() {
     return [super.styles,
     css`
       :host {
       }
-      
+/*FRONT IMAGE AND BUTTON*******************************************************/
+        .overlay-content {
+        position: absolute;
+        top: 40%;           /* adjust up/down */
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;          /* space between team name + join button */
+        z-index: 20;        /* above the image */
+      }
       /*KEEPS NAV BAR STICKY*/
       badmen-navbar {
         position: sticky;
         top: 0;
         z-index: 1000; /* keeps it above ALL other content */
       }
-      .join-overlay {
-        position: absolute;
-        top: 50%;
-        left: 50%;  
-        transform: translate(-50%, -50%);
-        z-index: 10; /*this makes sure its above the image*/
-      }
-      .stats-row {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-
-        width: 100%;
-        padding: 20px 0;
-      }
-      .front-image {
+        .front-image {
         position: relative;
         display: flex; 
         height: 800px;
@@ -92,10 +85,9 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
       }
       .badmen-image {
               width: 100%;
-              opacity: 80%;
+              opacity: 60%;
             }
-      
-      /*for the data cards scroll*/
+      /*for the date cards scroll*************************************************/
       .horizontal-scroll { 
         display: flex;
         gap: 16px;
@@ -104,44 +96,53 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
         padding: 10px 0;
         scrollbar-width: none; /* Firefox */
       }
-
       .horizontal-scroll::-webkit-scrollbar {
         display: none; /* Chrome/Safari */
       }
-
-
-      /*CSS FOR THE STAT BOXES:*/
+/*CSS FOR THE STAT BOXES:****************************************************/
       .stats-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 72px;              /* spacing between stat boxes */
-  justify-content: center;
-  align-items: flex-start;
-  padding: 8px;
-  padding-top: 72px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+        padding: 20px 0;
+      }
+      .stats-row {
+        display: flex;
+        flex-wrap: nowrap;     /* prevent wrapping so dividers stay aligned */
+        gap: 40px;             /* spacing between stats */
+        justify-content: center;
+        align-items: center;
+        padding: 8px;
+        padding-top: 72px;
+        box-sizing: border-box;
+      }
+      /* Mobile stacking */
+      @media (max-width: 600px) {
+        .stats-row {
+          flex-direction: column;
+          align-items: center;
+        }
+        .stats-row > badmen-stats {
+          width: 100%;
+          max-width: 360px;     /* keeps them from getting too wide */
+        }
+      }
+      /* Desktop: hug content */
+      @media (min-width: 601px) {
+        .stats-row > badmen-stats {
+          width: fit-content;
+        }
+      }
+      .stats-banner {
+  background-color: var(--ddd-theme-default-opportunityGreen);         /* solid green banner */
+  display: flex;                   /* arrange stats horizontally */
+  justify-content: center;         /* center the stats */
+  align-items: center;             /* vertical alignment */
+  width: 100%;
   box-sizing: border-box;
 }
-
-/* Mobile stacking */
-@media (max-width: 600px) {
-  .stats-row {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .stats-row > badmen-stats {
-    width: 100%;
-    max-width: 360px;     /* keeps them from getting too wide */
-  }
-}
-
-/* Desktop: hug content */
-@media (min-width: 601px) {
-  .stats-row > badmen-stats {
-    width: fit-content;
-  }
-}
-
 
     `];
   }
@@ -149,14 +150,19 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
 render() {
   return html`
-      <badmen-navbar></badmen-navbar>
-      <div class="front-image">
+          <badmen-navbar></badmen-navbar>
+    
+    <div class="front-image">
       <img
-      class=badmen-image 
-      src="https://static.vecteezy.com/system/resources/thumbnails/065/837/310/small_2x/male-badminton-player-in-mid-air-split-shot-with-racket-and-shuttlecock-photo.jpeg"
- />
-  <badmen-joinus class="join-overlay"></badmen-joinus>      
-</div>
+        class="badmen-image"
+        src="https://static.vecteezy.com/system/resources/thumbnails/065/837/310/small_2x/male-badminton-player-in-mid-air-split-shot-with-racket-and-shuttlecock-photo.jpeg"
+      />
+
+      <div class="overlay-content">
+        <badmen-teamname></badmen-teamname>
+        <badmen-joinus class="join-overlay"></badmen-joinus>
+      </div>
+    </div>
 
 <div class="horizontal-scroll">
    <badmen-datecard 
@@ -249,23 +255,18 @@ render() {
     </div>
     </div>
          
-    <div class="stats-row">
-      <badmen-stats number="10" label="Championships" color=var(--ddd-theme-default-shrineMaxLight)></badmen-stats>
-<badmen-stats number="450" label="Active Players" color="var(--ddd-theme-default-shrineMaxLight)"></badmen-stats>
-<badmen-stats number="34" label="Coaches" color="var(--ddd-theme-default-shrineMaxLight)"></badmen-stats>
+    <div class="stats-banner">
+<badmen-stats number="8" label="CHAMPIONSHIPS" color=var(--ddd-theme-default-shrineMaxLight)></badmen-stats>
+<badmen-stats number="123+" label="ACTIVE PLAYERS" color="var(--ddd-theme-default-shrineMaxLight)"></badmen-stats>
+<badmen-stats number="17" label="COACHES" color="var(--ddd-theme-default-shrineMaxLight)"></badmen-stats>
 
       </div>
       
-
-
       <h2>Signup Section</h2>
       <badmen-signup></badmen-signup>
 
       <h2>Layout</h2>
       <badmen-layout></badmen-layout>
-
-      <h2>Team Name</h2>
-      <badmen-teamname></badmen-teamname>
 
       <h2>Calendar</h2>
       <badmen-calendar></badmen-calendar>
@@ -273,19 +274,13 @@ render() {
       <h2>Signup</h2>
       <badmen-signup></badmen-signup>
 
-      
-
-    
-
-       <h2>Info boxes</h2>
+      <h2>Info boxes</h2>
       <badmen-infoboxes></badmen-infoboxes>
 
-       <h2>datecard</h2>
+      <h2>datecard</h2>
       <badmen-datecard></badmen-datecard>
 
     </div>
-
-    
   `;
 }
 
