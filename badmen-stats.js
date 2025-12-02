@@ -61,7 +61,7 @@ static get styles() {
     }
 
     .label {
-      color: var(--ddd-theme-default-shrineMaxLight);
+      color: var(--ddd-theme-default-roarLight);
       font-family: var(--ddd-font-weight-medium);
       font-weight: var(--ddd-font-weight-black);
       font-size: clamp(12px, 4vw, 24px);

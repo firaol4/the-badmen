@@ -118,40 +118,70 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
       font-weight: var(--ddd-font-weight-black);
       font-size: clamp(24px, 6vw, 56px);
       letter-spacing: var(--ddd-spacing-1);
-      color: var(--ddd-theme-default-roarLight);
-      padding-left: clamp(24px, 6vw, 144px);
-      padding-top: 72px;
+      color: var(--ddd-theme-default-coalyGray);
+      padding-left: clamp(16px, 30vw, 24px);
+      padding-top: 24px;      
 }
 
   .who-we-are-body {
       font-family: var(--ddd-font-navigation);
       font-weight: 100;
       font-size: clamp(12px, 6vw, 24px);
-      color: var(--ddd-theme-default-roarLight);
-      padding-left: clamp(24px, 6vw, 144px);
+      color: var(--ddd-theme-default-coalyGray);
+      padding-left: 0px;
       padding-bottom: 16px;
-      padding-right: clamp(24px, 6vw, 144px);
+      padding-right: clamp(16px, 30vw, 100px);
+      padding-left: clamp(16px, 30vw, 24px);
+      padding-bottom: 36px;
 }
 
-  .our-mission-heading {
-      font-family: var(--ddd-font-navigation);
-      font-weight: var(--ddd-font-weight-black);
-      font-size: clamp(24px, 6vw, 56px);
-      letter-spacing: var(--ddd-spacing-1);
-      color: var(--ddd-theme-default-roarLight);
-      padding-left: clamp(24px, 6vw, 144px);
-      padding-top: 0px;
+.about-section {
+  background-color: var(--ddd-theme-default-keystoneYellow);
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  height: auto; /* adjust if needed */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0px; /* space between image and text */
+  padding-right: clamp(8px, 4vw, 32px);
+  padding-left: clamp(24px, 4vw, 32px);
+
 }
 
-  .our-mission-body {
-      font-family: var(--ddd-font-navigation);
-      font-weight: 100;
-      font-size: clamp(12px, 6vw, 24px);
-      color: var(--ddd-theme-default-roarLight);
-      padding-left: clamp(24px, 6vw, 144px);
-      padding-bottom: 72px;
-      padding-right: clamp(24px, 6vw, 144px);
+.about-section img.logo {
+  width: 400px; /* adjust size */
+  height: 600px;
+  flex-shrink: 0;
 }
+
+.left-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 768px) {
+  .about-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: auto;
+  }
+  .about-section img.logo {
+    margin-bottom: 16px;
+  }
+  .who-we-are-body {
+    padding-right: clamp(4px, 1vw, 8px);
+  }
+}
+
+
+
+
+
 
 
     `];
@@ -264,15 +294,14 @@ render() {
 </div>
 
 <div class="about-section">
-   <div class="left-section">
+<img class="logo" src="https://freesvg.org/img/logo_bad_lion_2.png" alt="Bad Lion Logo" />   <div class="left-section">
 <div class ="who-we-are-heading">Who are the BADMEN?</div>
 <div class ="who-we-are-body">The Badmen are a premier badminton organization based in State College, Pennsylvania, known for their competitive spirit and strong community presence. With eight championship titles, the team has built a reputation for excellence across local and regional leagues. The club boasts a thriving membership of over 125 active players, ranging from beginners to advanced competitors. Supported by 17 dedicated coaches, the Badmen focus on skill development, sportsmanship, and year-round training opportunities. Their program includes a robust U-18 youth division, where young athletes receive structured coaching and competitive play. In addition, the Badmen run a vibrant adult league, welcoming players of all ages looking to improve or compete. The organization regularly hosts tournaments, workshops, and community events to promote the sport. Together, the Badmen continue to grow badminton’s presence in State College while cultivating a strong and supportive athletic community.</div>
 </div>
-<div class="our-mission-section">
-   <div class="right-section">
-<div class ="our-mission-heading">Our Mission:</div>
-<div class ="our-mission-body">At the Badmen, our mission is to grow a passionate, inclusive, and high-performing badminton community in State College and beyond. We strive to provide athletes of all ages with access to quality coaching, competitive opportunities, and a supportive environment that encourages personal growth. Through dedication, discipline, and teamwork, we aim to help every player—youth and adult—reach their full potential on and off the court. We are committed to promoting sportsmanship, fostering lifelong friendships, and inspiring a love for badminton within our community. Our mission also includes creating accessible pathways for new players, offering structured training for developing athletes, and supporting advanced competitors as they prepare for higher-level play. We believe in maintaining a culture where every member feels seen and supported, regardless of age or skill level. Through events, tournaments, outreach programs, and year-round training, we work to strengthen both individual confidence and community connection. Above all, we strive to make the Badmen a place where players feel challenged, valued, and truly proud to belong.
 </div>
+</div>
+
+
 
 
      
