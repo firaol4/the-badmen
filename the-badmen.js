@@ -9,7 +9,7 @@ import "./badmen-navbar.js";
 import "./badmen-layout.js";
 import "./badmen-signup.js";
 import "./badmen-teamname.js";
-import "./badmen-calendar.js";
+import "./badman-calender.js";
 import "./badmen-joinus.js";
 import "./badmen-infoboxes.js";
 import "./badmen-datecard.js";
@@ -53,13 +53,23 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
   }
 
 
-
-
   // Lit scoped styles
   static get styles() {
     return [super.styles,
     css`
       :host {
+      }
+/*FRONT IMAGE AND BUTTON*******************************************************/
+        .overlay-content {
+        position: absolute;
+        top: 40%;           /* adjust up/down */
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;          /* space between team name + join button */
+        z-index: 20;        /* above the image */
       }
       /*KEEPS NAV BAR STICKY*/
       badmen-navbar {
@@ -67,23 +77,7 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
         top: 0;
         z-index: 1000; /* keeps it above ALL other content */
       }
-      .join-overlay {
-        position: absolute;
-        top: 50%;
-        left: 50%;  
-        transform: translate(-50%, -50%);
-        z-index: 10; /*this makes sure its above the image*/
-      }
-      .stats-row {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-
-        width: 100%;
-        padding: 20px 0;
-      }
-      .front-image {
+        .front-image {
         position: relative;
         display: flex; 
         height: 800px;
@@ -91,10 +85,9 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
       }
       .badmen-image {
               width: 100%;
-              opacity: 80%;
+              opacity: 60%;
             }
-      
-      /*for the data cards scroll*/
+      /*for the date cards scroll*************************************************/
       .horizontal-scroll { 
         display: flex;
         gap: 16px;
@@ -103,10 +96,118 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
         padding: 10px 0;
         scrollbar-width: none; /* Firefox */
       }
-
       .horizontal-scroll::-webkit-scrollbar {
         display: none; /* Chrome/Safari */
       }
+/*CSS FOR THE STAT BOXES:****************************************************/
+     
+      .stats-banner {
+  background-color: var(--ddd-theme-default-opportunityGreen);         
+  display: flex;                  
+  justify-content: center;        
+  align-items: center;            
+  width: 100%;
+  box-sizing: border-box;
+}
+      
+
+
+
+  .who-we-are-heading {
+      font-family: var(--ddd-font-navigation);
+      font-weight: var(--ddd-font-weight-black);
+      font-size: clamp(24px, 6vw, 56px);
+      letter-spacing: var(--ddd-spacing-1);
+      color: var(--ddd-theme-default-coalyGray);
+      padding-left: clamp(16px, 30vw, 24px);
+      padding-top: 24px;      
+}
+
+  .who-we-are-body {
+      font-family: var(--ddd-font-navigation);
+      font-weight: 100;
+      font-size: clamp(12px, 6vw, 24px);
+      color: var(--ddd-theme-default-coalyGray);
+      padding-left: 0px;
+      padding-bottom: 16px;
+      padding-right: clamp(16px, 30vw, 100px);
+      padding-left: clamp(16px, 30vw, 24px);
+      padding-bottom: 36px;
+}
+
+.about-section {
+  background-color: var(--ddd-theme-default-keystoneYellow);
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  height: auto; /* adjust if needed */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0px; /* space between image and text */
+  padding-right: clamp(8px, 4vw, 32px);
+  padding-left: clamp(24px, 4vw, 32px);
+
+}
+
+.about-section img.logo {
+  width: 400px; /* adjust size */
+  height: 600px;
+  flex-shrink: 0;
+}
+
+.left-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 768px) {
+  .about-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: auto;
+  }
+  .about-section img.logo {
+    margin-bottom: 16px;
+  }
+  .who-we-are-body {
+    padding-right: clamp(4px, 1vw, 8px);
+  }
+}
+
+.info-boxes {
+  display: flex;                  /* inline-flex -> flex for better wrapping */
+  flex-wrap: wrap;                /* allow boxes to wrap on small screens */
+  justify-content: center;        /* center items horizontally */
+  gap: 16px;
+  padding: 1rem 1rem;             /* relative padding for responsiveness */
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  .info-boxes {
+    padding: 1rem 0.5rem;
+    gap: 12px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     `];
   }
@@ -114,18 +215,19 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
 render() {
   return html`
-    <div class="wrapper">
-
-      <h2>Navigation Bar</h2>
-      <badmen-navbar></badmen-navbar>
-      <badmen-navbar></badmen-navbar>
-      <div class="front-image">
+          <badmen-navbar></badmen-navbar>
+    
+    <div class="front-image">
       <img
-      class=badmen-image 
-      src="https://static.vecteezy.com/system/resources/thumbnails/065/837/310/small_2x/male-badminton-player-in-mid-air-split-shot-with-racket-and-shuttlecock-photo.jpeg"
- />
-  <badmen-joinus class="join-overlay"></badmen-joinus>      
-</div>
+        class="badmen-image"
+        src="https://static.vecteezy.com/system/resources/thumbnails/065/837/310/small_2x/male-badminton-player-in-mid-air-split-shot-with-racket-and-shuttlecock-photo.jpeg"
+      />
+
+      <div class="overlay-content">
+        <badmen-teamname></badmen-teamname>
+        <badmen-joinus class="join-overlay"></badmen-joinus>
+      </div>
+    </div>
 
 <div class="horizontal-scroll">
    <badmen-datecard 
@@ -214,49 +316,73 @@ render() {
       location="Westside Community Gym, 300 Blue Course Dr, State College PA"
       ageGroup="All ages welcome">
 </badmen-datecard>
+</div>
 
-    </div>
-    </div>
-         
+<div class="about-section">
+<img class="logo" src="https://freesvg.org/img/logo_bad_lion_2.png" alt="Bad Lion Logo" />   <div class="left-section">
+<div class ="who-we-are-heading">Who are the BADMEN?</div>
+<div class ="who-we-are-body">The Badmen are a premier badminton organization based in State College, Pennsylvania, known for their competitive spirit and strong community presence. With eight championship titles, the team has built a reputation for excellence across local and regional leagues. The club boasts a thriving membership of over 125 active players, ranging from beginners to advanced competitors. Supported by 17 dedicated coaches, the Badmen focus on skill development, sportsmanship, and year-round training opportunities. Their program includes a robust U-18 youth division, where young athletes receive structured coaching and competitive play. In addition, the Badmen run a vibrant adult league, welcoming players of all ages looking to improve or compete. The organization regularly hosts tournaments, workshops, and community events to promote the sport. Together, the Badmen continue to grow badminton’s presence in State College while cultivating a strong and supportive athletic community.</div>
+</div>
+</div>
+</div>
+ 
+<div class="stats-banner">
+<badmen-stats number="8" label="CHAMPIONSHIPS" color=var(--ddd-theme-default-shrineMaxLight)></badmen-stats>
+<badmen-stats number="125+" label="ACTIVE PLAYERS" color="var(--ddd-theme-default-shrineMaxLight)"></badmen-stats>
+<badmen-stats number="17" label="COACHES" color="var(--ddd-theme-default-shrineMaxLight)"></badmen-stats>
+</div>
+
+<div class="info-boxes">
+      <badmen-infoboxes 
+      message="SUPPORT THE BADMEN!"
+      submessage="Donate Here">
+    </badmen-infoboxes>
+     <badmen-infoboxes 
+      message="CONTACT THE BADMEN!"
+      submessage="Here">
+    </badmen-infoboxes>
+     <badmen-infoboxes 
+      message="JOIN THE BADMEN!"
+      submessage="Join">
+    </badmen-infoboxes>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       
-
-
       <h2>Signup Section</h2>
       <badmen-signup></badmen-signup>
 
       <h2>Layout</h2>
       <badmen-layout></badmen-layout>
 
-      <h2>Team Name</h2>
-      <badmen-teamname></badmen-teamname>
-
-      <h2>Calendar</h2>
-      <badmen-calendar></badmen-calendar>
+      <h2>Calender</h2>
+      <badman-calender></badman-calender>
 
       <h2>Signup</h2>
       <badmen-signup></badmen-signup>
 
-      <h2>Stats</h2>
-      <div class="stats-row">
-      <badmen-stats number="10" label="Championships"></badmen-stats>
-      <badmen-stats number="450" label="Active Players"></badmen-stats>
-      <badmen-stats number="34" label="Coaches"></badmen-stats>
-      </div>
-       <h2>Join Us</h2>
-      <badmen-joinus></badmen-joinus>
-      <badmen-stats></badmen-stats>
-
     
 
-       <h2>Info boxes</h2>
-      <badmen-infoboxes></badmen-infoboxes>
-
-       <h2>datecard</h2>
-      <badmen-datecard></badmen-datecard>
+     
 
     </div>
-
-    
   `;
 }
 

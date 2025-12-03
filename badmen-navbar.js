@@ -77,6 +77,12 @@ ul {
   flex-wrap: wrap;  /* allows wrapping instead of pushing off screen */
 }
 
+li:hover {
+  transform: scale(1.2);
+  color: var(--ddd-theme-default-opportunityGreen);
+  cursor: pointer;
+}
+
 li {
   font-size: clamp(16px, 2vw, 24px);
   display: flex;
