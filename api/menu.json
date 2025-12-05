@@ -1,15 +1,81 @@
-[
-    {
-      "label": "About Us",
-      "page": "about-us"
-    },
-    {
-      "label": "Schedule",
-      "page": "schedule"
-    },
-    {
-      "label": "Join Us",
-      "page": "join-us"
-    }
-  ]
+{
+    "title": "Badmen Site Menu",
+    "author": "You",
+    "description": "Primary site navigation for The Badmen",
+    "license": "MIT",
+    "metadata": {},
+    "id": "menu-root",
+    "items": [
+      {
+        "id": "home",
+        "indent": "1",
+        "location": "/",
+        "slug": "home",
+        "order": "0",
+        "parent": "",
+        "title": "Home",
+        "metadata": { "type": "nav" }
+      },
+      {
+        "id": "about",
+        "indent": "1",
+        "location": "/?page=about-us",
+        "slug": "about-us",
+        "order": "1",
+        "parent": "",
+        "title": "About Us",
+        "metadata": { "type": "nav" }
+      },
+      {
+        "id": "team",
+        "indent": "1",
+        "location": "",
+        "slug": "team",
+        "order": "2",
+        "parent": "",
+        "title": "Team",
+        "metadata": { "type": "nav", "expandable": true }
+      },
+      {
+        "id": "team-roster",
+        "indent": "2",
+        "location": "/?page=team-roster",
+        "slug": "team-roster",
+        "order": "0",
+        "parent": "team",
+        "title": "Roster",
+        "metadata": {}
+      },
+      {
+        "id": "team-coaches",
+        "indent": "2",
+        "location": "/?page=coaches",
+        "slug": "coaches",
+        "order": "1",
+        "parent": "team",
+        "title": "Coaches",
+        "metadata": {}
+      },
+      {
+        "id": "schedule",
+        "indent": "1",
+        "location": "/?page=schedule",
+        "slug": "schedule",
+        "order": "3",
+        "parent": "",
+        "title": "Schedule",
+        "metadata": {}
+      },
+      {
+        "id": "join",
+        "indent": "1",
+        "location": "/?page=join-us",
+        "slug": "join-us",
+        "order": "4",
+        "parent": "",
+        "title": "Join Us",
+        "metadata": {}
+      }
+    ]
+  }
   
