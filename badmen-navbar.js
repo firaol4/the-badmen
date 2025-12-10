@@ -9,6 +9,7 @@ export class BadmenNavbar extends LitElement {
     return {
       menu: { type: Array },
       activePage: { type: String },
+      openItems: { type: Object },
     };
   }
 
@@ -17,7 +18,7 @@ export class BadmenNavbar extends LitElement {
 
     this.menu = [];
     this.activePage = this.getActivePageFromURL();
-    
+    this.openItems = {};
 
     this.loadMenu();
 
@@ -30,7 +31,7 @@ export class BadmenNavbar extends LitElement {
 
   async loadMenu() {
     try {
-      const response = await fetch("/api/menu");
+      const response = await fetch("/menu.json");
       if (!response.ok) throw new Error("Menu endpoint missing");
   
       this.menu = await response.json();
