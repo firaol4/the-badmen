@@ -18,11 +18,7 @@ import "./badmen-schedule.js";
 import "./badmen-footer.js";
 import "./badmen-sponsors.js";
 import "./badmen-contact.js";
-
-
-
-
-
+import "./badmen-joinuspage.js";
 
 /**
  * `the-badmen`
@@ -51,6 +47,15 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
         "/../",
       locales: ["ar", "es", "hi", "zh"],
     });
+    // --- NEW: Read current page from URL hash ---
+const hashPage = window.location.hash.replace("#", "");
+this.page = hashPage || ""; // default to home if no hash
+
+// Listen to hash changes (back/forward navigation)
+window.addEventListener("hashchange", () => {
+  this.page = window.location.hash.replace("#", "");
+});
+
   }
 
   // Lit reactive properties
@@ -203,27 +208,23 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
     gap: 12px;
   }
 }
-
-
-
     `];
   }
 
-
-
-
 render() {
   return html`
-    <badmen-navbar
-      .page="${this.page}"
-      @route-changed="${(e) => this.page = e.detail.page}">
-    </badmen-navbar>
+<badmen-navbar
+  .page="${this.page}"
+  @route-changed="${(e) => {
+    this.page = e.detail.page;
+    window.location.hash = this.page;
+  }}">
+</badmen-navbar>
+
 
     ${this.renderPage()}
   `;
 }
-
-
 
 renderPage() {
   switch (this.page) {
@@ -232,7 +233,7 @@ renderPage() {
     case "schedule":
       return html`<badmen-schedule></badmen-schedule>`;
     case "join-us":
-      return html`<badmen-joinus></badmen-joinus>`;
+      return html`<badmen-joinuspage></badmen-joinuspage>`;
     default:
       return this.renderHome();
   }
@@ -372,42 +373,7 @@ renderHome() {
     </div>
 
     <badmen-sponsors></badmen-sponsors>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          
-          <h2>Signup Section</h2>
-          <badmen-signup></badmen-signup>
-
-          <h2>Layout</h2>
-          <badmen-layout></badmen-layout>
-
-          <h2>Signup</h2>
-          <badmen-signup></badmen-signup>
-
-          <h2>Footer</h2>
-          <badmen-footer></badmen-footer>
-
-
-
+    <badmen-footer></badmen-footer>
   `;
 }
 
