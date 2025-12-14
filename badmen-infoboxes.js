@@ -8,7 +8,8 @@ export class badmenInfoboxes extends LitElement {
   static get properties() {
     return {
       message: {type: String},
-      submessage: {type: String}
+      submessage: {type: String},
+      route: { type: String }
     };
   }
 
@@ -76,12 +77,24 @@ static get styles() {
       }
     }
   `;
+
 }
+  _handleClick() {
+    if (this.route) {
+      window.BadmenRouter.go(this.route);
+    }
+  }
 
   render() {
     return html`
       <div class="message">${this.message}</div>
-      <div class="submessage">${this.submessage}</div>
+      
+      <button
+        class="submessage"
+        @click="${this._handleClick}"
+      >
+        ${this.submessage}
+      </button>
 
     `;
   }

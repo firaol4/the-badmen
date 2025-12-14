@@ -58,9 +58,10 @@ export class badmenJoinus extends LitElement {
   render() {
     return html`
      <div class="join-wrapper">
-        <button class="join-button">
+        <button class="join-button" @click="${() => window.BadmenRouter.go('join-us')}">
           Become a Badman Today!
         </button>
+       
       </div> 
     `;
   }
