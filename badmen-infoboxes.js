@@ -23,18 +23,18 @@ export class badmenInfoboxes extends LitElement {
 static get styles() {
   return css`
     :host {
-      display: flex;                 /* flex instead of inline-block */
+      display: flex;              
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 100%;                   /* fills parent container */
+      width: 100%;                
       max-width: 400px;              
-      min-height: 200px;             /* flexible height */
+      min-height: 200px;            
       background: var(--ddd-theme-default-roarLight);
       border-radius: 12px;
       padding: 16px;
       box-sizing: border-box;
-      margin: 0 auto;                /* center in container */
+      margin: 0 auto;              
     }
 
     .message {

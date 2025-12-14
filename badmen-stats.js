@@ -52,7 +52,7 @@ export class badmenStats extends LitElement {
       .number {
         font-family: var(--ddd-font-secondary);
         font-weight: var(--ddd-font-weight-black);
-        font-size: clamp(18px, 18vw, 172px);
+        font-size: clamp(18px, 15vw, 136px);
         letter-spacing: var(--ddd-spacing-2);
         color: var(--number-color);
         margin-bottom: 4px;

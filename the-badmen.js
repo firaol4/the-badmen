@@ -6,7 +6,6 @@ import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 import "./badmen-navbar.js";
-import "./badmen-layout.js";
 import "./badmen-signup.js";
 import "./badmen-teamname.js";
 import "./badman-calender.js";
@@ -17,7 +16,9 @@ import "./badmen-stats.js";
 import "./badmen-aboutus.js";
 import "./badmen-schedule.js";
 import "./badmen-footer.js";
-
+import "./badmen-sponsors.js";
+import "./badmen-contact.js";
+import "./badmen-joinuspage.js";
 
 /**
  * `the-badmen`
@@ -46,6 +47,15 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
         "/../",
       locales: ["ar", "es", "hi", "zh"],
     });
+    // --- NEW: Read current page from URL hash ---
+const hashPage = window.location.hash.replace("#", "");
+this.page = hashPage || ""; // default to home if no hash
+
+// Listen to hash changes (back/forward navigation)
+window.addEventListener("hashchange", () => {
+  this.page = window.location.hash.replace("#", "");
+});
+
   }
 
   // Lit reactive properties
@@ -106,7 +116,7 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
       }
 /*CSS FOR THE STAT BOXES:****************************************************/
      
-      .stats-banner {
+  .stats-banner {
   background-color: var(--ddd-theme-default-opportunityGreen);         
   display: flex;                  
   justify-content: center;        
@@ -198,27 +208,23 @@ export class TheBadmen extends DDDSuper(I18NMixin(LitElement)) {
     gap: 12px;
   }
 }
-
-
-
     `];
   }
 
-
-
-
 render() {
   return html`
-    <badmen-navbar
-      .page="${this.page}"
-      @route-changed="${(e) => this.page = e.detail.page}">
-    </badmen-navbar>
+<badmen-navbar
+  .page="${this.page}"
+  @route-changed="${(e) => {
+    this.page = e.detail.page;
+    window.location.hash = this.page;
+  }}">
+</badmen-navbar>
+
 
     ${this.renderPage()}
   `;
 }
-
-
 
 renderPage() {
   switch (this.page) {
@@ -227,7 +233,7 @@ renderPage() {
     case "schedule":
       return html`<badmen-schedule></badmen-schedule>`;
     case "join-us":
-      return html`<badmen-joinus></badmen-joinus>`;
+      return html`<badmen-joinuspage></badmen-joinuspage>`;
     default:
       return this.renderHome();
   }
@@ -366,40 +372,8 @@ renderHome() {
         </badmen-infoboxes>
     </div>
 
-
-    <badmen-calender></badmen-calender>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          
-          <h2>Signup Section</h2>
-          <badmen-signup></badmen-signup>
-
-          <h2>Layout</h2>
-          <badmen-layout></badmen-layout>
-
-          <h2>Signup</h2>
-          <badmen-signup></badmen-signup>
-
-          <h2>Footer</h2>
-          <badmen-footer></badmen-footer>
-
-
-
+    <badmen-sponsors></badmen-sponsors>
+    <badmen-footer></badmen-footer>
   `;
 }
 
